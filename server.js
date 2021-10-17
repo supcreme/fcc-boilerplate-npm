@@ -27,6 +27,19 @@ if (!process.env.DISABLE_XORIGIN) {
   });
 }
 
+// EXERCISES FFC
+app.get('/json', function(req, res) {
+  let obj = {'message': 'Hello json'};
+  res.json(obj);
+});
+
+app.get( '/', function( req, res ) {
+  let absolutePath = __dirname +
+      '/views/index.html';
+  res.sendFile( absolutePath );
+} );
+
+
 app.use('/public', express.static(process.cwd() + '/public'));
 
 app.route('/_api/package.json').get(function(req, res, next) {
@@ -61,8 +74,3 @@ const listener = app.listen(process.env.PORT || 3000, function() {
   console.log('Node.js listening on port ' + listener.address().port);
 });
 
-// EXERCISES FFC
-app.get('/json', function(req, res) {
-  let obj = {'message': 'Hello json'};
-  res.json(obj);
-});
